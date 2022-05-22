@@ -26,6 +26,7 @@
 			<properties>
 				<spring-javaformat.version>0.0.22</spring-javaformat.version>
 				<nohttp-checkstyle.version>0.0.4.RELEASE</nohttp-checkstyle.version>
+				<disable.checks>true</disable.checks>
 			</properties>
 			<build>
 				<plugins>
