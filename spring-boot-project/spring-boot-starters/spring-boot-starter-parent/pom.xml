@@ -21,6 +21,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<revision>2.2.9.release</revision>
 	</properties>
 	<build>
 		<!-- Turn on filtering by default for application properties -->
