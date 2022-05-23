@@ -90,13 +90,18 @@ public abstract class AutoConfigurationPackages {
 	 * @param packageNames the package names to set
 	 */
 	public static void register(BeanDefinitionRegistry registry, String... packageNames) {
+		// 这里参数 packageNames 缺省情况下就是一个字符串，是使用了注解
+		// SpringBootApplication 的 springboot 应用程序入口所在的包
 		if (registry.containsBeanDefinition(BEAN)) {
+			//如果该bean已经注册，则将要注册包名添加进去
 			BeanDefinition beanDefinition = registry.getBeanDefinition(BEAN);
 			ConstructorArgumentValues constructorArguments = beanDefinition.getConstructorArgumentValues();
 			constructorArguments.addIndexedArgumentValue(0, addBasePackages(constructorArguments, packageNames));
 		}
 		else {
+			//如果该bean尚未注册，则注册该bean，参数中提供的包名称会被设置到bean定义中去
 			GenericBeanDefinition beanDefinition = new GenericBeanDefinition();
+			//注册的bean就是这个，这个注解类所在的包路径，保存自动配置类以之后使用，比如给jpa entity 扫描器用来扫描开发人员通过注解@Entity定义的entity类
 			beanDefinition.setBeanClass(BasePackages.class);
 			beanDefinition.getConstructorArgumentValues().addIndexedArgumentValue(0, packageNames);
 			beanDefinition.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
@@ -118,8 +123,11 @@ public abstract class AutoConfigurationPackages {
 	 */
 	static class Registrar implements ImportBeanDefinitionRegistrar, DeterminableImports {
 
+		//metadata 注解的元数据信息
+		//bean定义的注册中心
 		@Override
 		public void registerBeanDefinitions(AnnotationMetadata metadata, BeanDefinitionRegistry registry) {
+			//将注解标注元信息传入，获取到相应的包名
 			register(registry, new PackageImport(metadata).getPackageName());
 		}
 

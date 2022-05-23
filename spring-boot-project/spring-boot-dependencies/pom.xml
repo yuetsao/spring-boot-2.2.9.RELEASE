@@ -32,6 +32,7 @@
 		</developer>
 	</developers>
 	<properties>
+        <!-- springboot 对应的版本号都整理好了，我们无需关心 -->
 		<main.basedir>${basedir}/../..</main.basedir>
 		<!-- Dependency versions -->
 		<activemq.version>5.15.13</activemq.version>

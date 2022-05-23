@@ -79,8 +79,12 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@AutoConfigurationPackage
-@Import(AutoConfigurationImportSelector.class)
+@AutoConfigurationPackage//自动配置包
+@Import(AutoConfigurationImportSelector.class) //spring的底层注解@Import 给容器中导入一个组件
+//将AutoConfigurationImportSelector 这个类导入到Spring 容器中
+//AutoConfigurationImportSelector 可以帮助SpringBoot 将应用所有符合条件的@Configuration 配置都加载到当前SpringBoot创建并使用的 IOC容器（ApplicationContext）中
+//可以看到AutoConfigurationImportSelector 重点实现了DeferredImportSelector接口和各种Aware接口，然后DeferredImportSelector接口又接口又继承了ImportSelector接口
+//其实不光实现了ImportSelector接口，还实现了了很多其他Aware接口，分别表示在某个时机会被回调。
 public @interface EnableAutoConfiguration {
 
 	String ENABLED_OVERRIDE_PROPERTY = "spring.boot.enableautoconfiguration";

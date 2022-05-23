@@ -3,6 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
+<!--		spring boot starter parent 通过继承spring boot dependencies 从而实现了springboot的版本依赖管理，所以我们的springboot工程继承
+            springboot starter parent 后已经具备了版本锁定等配置了，这也就是springboot 项目中部分依赖不需要写版本号的原因
+-->
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-dependencies</artifactId>
 		<version>${revision}</version>

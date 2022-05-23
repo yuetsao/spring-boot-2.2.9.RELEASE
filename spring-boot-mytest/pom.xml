@@ -18,6 +18,11 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
+		<!--		依赖启动器的主要作用是打包了web开发场景所需要的底层所有依赖（基于依赖传递性，当前项目也存在对应依赖jar包，
+		正因如此，在pom.xml中引入springbootstarterweb 依赖启动器时，就可以实现web场景开发，而不需要额外倒入tomcat服务器以及其他web依赖邓文推荐，当然，这些
+		引入的依赖文件的版本号还是由springbootstarterparent父依赖进行统一管理
+		第三方有自己的依赖启动器，但是需要指定版本号
+		-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

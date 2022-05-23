@@ -45,20 +45,23 @@ import org.springframework.data.repository.Repository;
  * @author Andy Wilkinson
  * @since 1.2.0
  */
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-@Inherited
-@SpringBootConfiguration
-@EnableAutoConfiguration
+@Target(ElementType.TYPE) //注解的适用范围，Type表示注解可以描述在类、接口、注解或枚举中
+@Retention(RetentionPolicy.RUNTIME)//表示注解的生命周期，Runtime 运行时
+@Documented//表示注解可以记录在 java doc 中
+@Inherited// 表示可以被子类继承该注解
+//------------------------------------------以上为元注解--------------------
+@SpringBootConfiguration//表明该类为配置类，就是对@Configuration进行了包装和重新命名而已
+@EnableAutoConfiguration//启动自动配置功能  【spring中有很多以enable 开头的注解，其作用就是借助@Import 来收集并注册特定场景相关的bean，并加入到IOC容器】 @EnableAutoConfiguration
+//就是借助@Import 来收集所有符合自动配置条件的bean定义，并加载到IOC容器
 @ComponentScan(excludeFilters = { @Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
-		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })
+		@Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) })//注解扫描
 public @interface SpringBootApplication {
 
 	/**
 	 * Exclude specific auto-configuration classes such that they will never be applied.
 	 * @return the classes to exclude
 	 */
+	//根据class来排除特定的类，使其不能加入spring容器，传入参数value类型是class类型
 	@AliasFor(annotation = EnableAutoConfiguration.class)
 	Class<?>[] exclude() default {};
 
@@ -68,6 +71,7 @@ public @interface SpringBootApplication {
 	 * @return the class names to exclude
 	 * @since 1.3.0
 	 */
+	//根据classname 来排除特定的类，使其不能加入spring容器，传入参数value 类型是 class 的全类名字符串数组
 	@AliasFor(annotation = EnableAutoConfiguration.class)
 	String[] excludeName() default {};
 
