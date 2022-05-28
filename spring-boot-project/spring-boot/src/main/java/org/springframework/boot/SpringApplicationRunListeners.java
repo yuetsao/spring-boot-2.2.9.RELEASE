@@ -48,12 +48,14 @@ class SpringApplicationRunListeners {
 		}
 	}
 
+	//当environment构建完成， ApplicationContext创建之前，该方法被调用
 	void environmentPrepared(ConfigurableEnvironment environment) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.environmentPrepared(environment);
 		}
 	}
 
+    // 当ApplictionContext构建完成时，该方法被调用
 	void contextPrepared(ConfigurableApplicationContext context) {
 		for (SpringApplicationRunListener listener : this.listeners) {
 			listener.contextPrepared(context);
