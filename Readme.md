@@ -41,3 +41,23 @@ ConfigFileApplicationListener
 * <li>classpath:</li>
 * </ul
 ```
+![img.png](img.png)
+
+spring启动过程中，会将类解析成spring内部的BeanDefinition结构，存到容器中（注入到
+ConCurrentHashMap）
+
+#### SpringBoot starter机制
+
+SpringBoot中的starter是一种非常重要的机制，能够抛弃以前繁杂的配置，将其统一继承进starter，应用者只要在
+maven中引入starter依赖，SpringBoot就会自动扫描到要加载的信息并启动相应的的默认配置。starter让我们拜托了各种依赖库
+的处理，需要配置各种信息的困扰。SpringBoot会自动通过classpath路径下的类发现需要的bean
+并注册到IoC容器中。SpringBoot提供了针对日常企业应用研发各种场景的spring-boot-starter依赖模块。所有这些依赖模块
+都遵循着约定成俗的默认配置，并允许我们调整这些配置，即遵循"约定大于配置"的理念。
+
+#### 自定义starter的命名规则
+
+官方定义的：spring-boot-starter-xxx 
+
+自定义的：xxx-spring-boot-starter
+
+
